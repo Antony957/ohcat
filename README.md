@@ -134,9 +134,6 @@ The front-end expects a backend that can mint RTC tokens and proxy Volcano Engin
    const RTC_APP_ID  = '<rtc-app-id>';
    ```
 
-…
-
-```
 3. Endpoints exposed:
 
 - `POST /api/token` → returns a signed RTC token for `{ roomId, userId }`.
