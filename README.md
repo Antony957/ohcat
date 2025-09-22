@@ -173,8 +173,6 @@ Next.js will pick these up through `src/config/index.ts`.
 | Market     | `GamePage.tsx`                      | Showcase of Ohcat-themed merchandise (static mock data).     |
 | Chat       | `ChatPage.tsx`                      | Text input, message bubbles, per-cat history, “start video call” button. |
 | Circle     | `CirclePage.tsx`                    | Masonry-style list of community circles/topics.              |
-| Care       | `CarePage.tsx`                      | Placeholder messaging (“这是关心页面”).                      |
-| Settings   | `SettingsPage.tsx`                  | Placeholder messaging (“这是设置页面”).                      |
 | Video chat | `VideoChatPage.tsx`                 | Full-screen canvas animation + RTC voice call UI.            |
 
 `MainLayout` (default entry) manages tabs, Redux provider, and toggles the video chat overlay. `MainContent` is an earlier variant retained for reference.
@@ -222,6 +220,5 @@ Next.js will pick these up through `src/config/index.ts`.
 | `restore-audio-config.sh`              | Copies `src/lib/catConfigs.ts.backup` back into place.       |
 | `src/examples/AudioQueueExample`       | Standalone page demonstrating `AudioQueue` usage (not routed by default). |
 | `src/components/SpeakingAnimationDemo` | Demo playground for the speaking animation hook.             |
-| `nohup.out`                            | Example server log (not needed for development).             |
 
 
