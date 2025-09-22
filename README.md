@@ -37,6 +37,10 @@ Koa proxy server (optional, /Server)
 
 ------
 
+## System structure
+![ohcat (1).png](public%2Fohcat%20%281%29.png)
+
+------
 ## Project structure
 
 ```
