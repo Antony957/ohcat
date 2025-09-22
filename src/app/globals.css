@@ -1,0 +1,426 @@
+@import "tailwindcss";
+
+:root {
+  --background: rgb(205, 187, 226);
+  --foreground: #ffffff;
+  --purple-primary: rgb(205, 187, 226);
+  --purple-secondary: rgb(185, 160, 210);
+  --purple-darker: rgb(165, 140, 195);
+  --pink-accent: #ff69b4;
+  --pink-light: #ffb6c1;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 边距工具类 */
+.p-safe {
+  padding: 16px;
+}
+
+.px-safe {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.py-safe {
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+.m-safe {
+  margin: 16px;
+}
+
+.mx-safe {
+  margin-left: 16px;
+  margin-right: 16px;
+}
+
+.my-safe {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  background: url('/images/bg/background.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: var(--foreground);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#__next {
+  height: 100%;
+  width: 100%;
+}
+
+/* Web3拟物风格样式 */
+.glass-morphism {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 
+    0 8px 32px 0 rgba(31, 38, 135, 0.37),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.neon-glow {
+  box-shadow: 
+    0 0 5px currentColor,
+    0 0 10px currentColor,
+    0 0 15px currentColor,
+    0 0 20px currentColor;
+}
+
+.gradient-border {
+  position: relative;
+  background: linear-gradient(45deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+  border-radius: 16px;
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #fcc2d7);
+  border-radius: inherit;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: xor;
+  -webkit-mask-composite: xor;
+}
+
+/* 径向渐变工具类 */
+.bg-gradient-radial {
+  background: radial-gradient(circle, var(--tw-gradient-stops));
+}
+
+/* 自定义滚动条 */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* 动画效果 */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 5px currentColor; }
+  50% { box-shadow: 0 0 20px currentColor, 0 0 30px currentColor; }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* LIQUID GLASS STYLES */
+.liquidGlass-wrapper {
+  position: relative;
+  display: flex;
+  font-weight: 600;
+  overflow: hidden;
+  color: black;
+  cursor: pointer;
+  box-shadow: 0 6px 6px rgba(0, 0, 0, 0.2), 0 0 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 2.2);
+}
+
+.liquidGlass-effect {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  backdrop-filter: blur(3px);
+  filter: url(#glass-distortion);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.liquidGlass-tint {
+  z-index: 1;
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.liquidGlass-shine {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  overflow: hidden;
+  box-shadow: inset 2px 2px 1px 0 rgba(255, 255, 255, 0.3),
+    inset -1px -1px 1px 1px rgba(255, 255, 255, 0.15);
+}
+
+.liquidGlass-text {
+  z-index: 3;
+  font-size: 2rem;
+  color: black;
+  padding: 1.2rem;
+}
+
+/* 卡片特定样式 */
+.card {
+  border-radius: 1.8rem;
+}
+
+.card:hover {
+  /* 悬浮效果可以只改变 transform 或 shadow 等，而非 padding */
+  border-radius: 1.8rem;
+}
+
+.card,
+.card > div {
+  border-radius: 1.8rem;
+}
+
+/* 全屏覆盖 */
+html, body, #__next {
+  height: 100%;
+  width: 100%;
+}
+
+.message-bubble {
+    position: relative;
+    box-sizing: border-box;
+    padding: 0.75rem 1.25rem;
+    margin: 0.5rem 0;
+    min-height: 2.25rem;
+    width: fit-content;
+    max-width: 75%;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 
+        0 4px 12px rgba(0, 0, 0, 0.15),
+        0 2px 4px rgba(0, 0, 0, 0.08),
+        0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.message-bubble.user {
+    margin-left: auto;
+    border-radius: 1.125rem 1.125rem 0 1.125rem;
+    box-shadow: 
+        0 6px 16px rgba(59, 130, 246, 0.2),
+        0 3px 6px rgba(59, 130, 246, 0.12),
+        0 1px 3px rgba(59, 130, 246, 0.08);
+}
+
+.message-bubble.cat {
+    margin-right: auto;
+    border-radius: 1.125rem 1.125rem 1.125rem 0;
+    box-shadow: 
+        0 6px 16px rgba(16, 185, 129, 0.2),
+        0 3px 6px rgba(16, 185, 129, 0.12),
+        0 1px 3px rgba(16, 185, 129, 0.08);
+}
+
+/* Liquid glass effect for message bubbles */
+.message-bubble-glass-effect {
+    position: absolute;
+    z-index: 0;
+    inset: 0;
+    backdrop-filter: blur(3px);
+    filter: url(#glass-distortion);
+    overflow: hidden;
+    isolation: isolate;
+    border-radius: inherit;
+}
+
+.message-bubble-glass-tint {
+    z-index: 1;
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: inherit;
+}
+
+.message-bubble-glass-shine {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    overflow: hidden;
+    border-radius: inherit;
+    box-shadow: inset 2px 2px 1px 0 rgba(255, 255, 255, 0.3),
+        inset -1px -1px 1px 1px rgba(255, 255, 255, 0.1);
+}
+
+.message-bubble-content {
+    position: relative;
+    z-index: 3;
+    color: black;
+    font-weight: 600;
+}
+
+.message-time {
+    font-size: 0.8rem;
+    background: #EEE;
+    padding: 0.25rem 1rem;
+    border-radius: 2rem;
+    color: #999;
+    width: fit-content;
+    margin: 1rem auto;
+}
+
+/* Chat input with liquid glass effect */
+.chat-input-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1.125rem;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.chat-input-glass-effect {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  backdrop-filter: blur(3px);
+  filter: url(#glass-distortion);
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: inherit;
+}
+
+.chat-input-glass-tint {
+  z-index: 1;
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: inherit;
+}
+
+.chat-input-glass-shine {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  overflow: hidden;
+  border-radius: inherit;
+  box-shadow: inset 2px 2px 1px 0 rgba(255, 255, 255, 0.5),
+    inset -1px -1px 1px 1px rgba(255, 255, 255, 0.5);
+}
+
+.chat-input {
+  position: relative;
+  z-index: 3;
+  border: none;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 1rem 1.5rem;
+  border-radius: 1.125rem;
+  background: transparent;
+  color: black;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.2s ease-in-out;
+}
+
+.chat-input::placeholder {
+  color: rgba(0, 0, 0, 0.6);
+  font-weight: 500;
+}
+
+.chat-input:focus {
+  outline: none;
+}
+
+/* Button with liquid glass effect */
+.glass-button {
+  position: relative;
+  overflow: hidden;
+  border: none;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+}
+
+.glass-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.glass-button-glass-effect {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  backdrop-filter: blur(3px);
+  filter: url(#glass-distortion);
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: inherit;
+}
+
+.glass-button-glass-tint {
+  z-index: 1;
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: inherit;
+}
+
+.glass-button-glass-shine {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  overflow: hidden;
+  border-radius: inherit;
+  box-shadow: inset 2px 2px 1px 0 rgba(255, 255, 255, 0.5),
+    inset -1px -1px 1px 1px rgba(255, 255, 255, 0.5);
+}
+
+.glass-button-content {
+  position: relative;
+  z-index: 3;
+  color: black;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.glass-button:hover {
+  transform: scale(1.05) translateY(-2px);
+}
+
+.glass-button:active {
+  transform: scale(0.95);
+}
